@@ -38,7 +38,16 @@ const UserForm = () => {
   const handleCancel = () => {
     setShowForm(false);
   };
-
+  const downloadpdf= async()=>{
+    try{
+      const respose =await axios.post(`http://localhost:8080/generateReport`);
+      console.log("pdf generated succesfullty"+" "+respose.data);
+       
+   }
+   catch(error){
+      console.log("pdf generation failed");
+   }
+  }
   return (
     <div>
       <button onClick={() => setShowForm(!showForm)} className="Add-button">
@@ -86,7 +95,7 @@ const UserForm = () => {
                 <label htmlFor="contact">Contact:</label>
                 <input type="text" id="contact" name="contact" required />
               </div>
-              <button type="submit" className="action-button">
+              <button type="submit" className="action-button" onClick={downloadpdf}>
                 Register
               </button>
               <button
