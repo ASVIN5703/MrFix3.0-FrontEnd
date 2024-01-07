@@ -1,0 +1,10 @@
+.Cards{
+    display: flex;
+}
+
+.parentContainer{
+    display: flex;
+    padding: 10px;
+    /* justify-content: space-around; */
+    width: 100%;
+}

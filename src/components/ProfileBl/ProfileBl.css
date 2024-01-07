@@ -1,0 +1,19 @@
+.profile-table-container {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    width: 80%;
+    border-collapse: collapse;
+  }
+ 
+  .profile-table {
+    display: flex;
+    margin: 20px;
+    width: 100%;
+  }
+    
+  .profile-table .profile-table-cell {
+    padding: 15px; 
+    font-size: 18px; 
+    text-align: left;
+  }

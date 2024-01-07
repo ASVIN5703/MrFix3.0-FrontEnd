@@ -1,0 +1,78 @@
+.Sidebar{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 300ms ease;
+    width: 20%;
+    padding: 1rem;
+    background: radial-gradient(circle at 10% 20%, rgb(251, 232, 254) 0%, rgb(221, 235, 251) 90.1%);
+    color: rgb(4, 36, 75);
+}
+.logo{
+    display: flex;
+    height: 5rem;
+    font-weight: bold;
+    font-size: 22px;
+    gap:1rem;
+    align-items: center;
+    justify-content: center;
+    height: 4%;
+}
+.mrfix{
+      size:50%;
+      height:80%;
+}
+
+
+.logo>img{
+    width:4rem;
+    height:4rem;
+}
+
+.menu{
+    margin-top: 4rem;
+    display:flex;
+    flex-direction: column ;
+    /* gap:1rem; */
+}
+
+.menuItem{
+    display:flex;
+    padding: 5px 0px;
+    align-items: center;
+    gap: 1rem;
+    height: 3rem;
+    margin-left: 2rem;
+    position: relative;
+    transition: all 300ms ease;
+    font-size: 18px;
+    border-radius: 0.7rem;
+}
+
+.menuItem:hover{
+    cursor: pointer;
+}
+
+.active{
+    background: var(--activeItem);
+    margin-left:0;
+}
+
+.active::before{
+    content: '';
+    width: 8px;
+    height: 100%;
+    background: var(--pink);
+    margin-right: calc(1rem - 8px);
+}
+
+.menu .menuItem:last-child{
+    position: absolute;
+    bottom:3rem;
+    width:100%;
+}
+
+.outside-wrapper{
+    display: flex;
+}
+

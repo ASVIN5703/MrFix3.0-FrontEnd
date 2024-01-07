@@ -1,0 +1,54 @@
+.action-button {
+  margin-right: 10px; /* Adjust the right margin as needed */
+}
+.Add-button {
+  font-size:20px;
+  font-weight: 600;
+  padding: 15px;
+  margin:20px 10px;
+  width:150px;
+  background-color: #ebeef1;
+  cursor:pointer;
+  border: none;
+  border-radius:50px;
+  color:#00a037;
+  box-shadow: 10px 10px 10px -1px rgba(10,99,169,0.16);
+   
+}
+
+  .overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .form-container {
+    color: black !important;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .password-input {
+    display: flex;
+    align-items: center;
+  }
+  
+  .eye-icon {
+    cursor: pointer;
+    margin-left: 5px; /* Adjust the margin as needed */
+  }
+  .head{
+    text-align: center;
+    font-size: large;
+    font-weight: 200;
+    font-style:oblique;
+  }
+  

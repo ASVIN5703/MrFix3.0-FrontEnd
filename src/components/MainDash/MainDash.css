@@ -1,0 +1,17 @@
+.MainDash{
+    display: flex;
+    margin: 20px;
+    width: 100%;
+    /* position: relative; */
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+}
+.table-heading {
+    font-size: 24px; /* Font size for the table heading */
+    padding: 20px;
+    color: #333; /* Text color for the heading */
+  }
+  .buttons-feature{
+    display: flex;
+  }
+  
