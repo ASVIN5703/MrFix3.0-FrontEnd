@@ -5,7 +5,9 @@ import React from "react"
 import { useNavigate } from 'react-router-dom';
 function Home() {
     const navigate = useNavigate();
-    const adLogin=()=>{
+    const adLogin=(role)=>{
+        localStorage.setItem('role', role);
+        console.log(localStorage.getItem("role"));
         navigate('/adminlogin');
     }
   return (
@@ -28,11 +30,11 @@ function Home() {
         <div class="select_container">
             <div class="select select-a">
                 <img src={png1} alt=""/>
-                <div class="layer" onClick={adLogin}><h3>Admin</h3></div>
+                <div class="layer" onClick={()=>adLogin("admin")}><h3>Admin</h3></div>
             </div>
             <div class="select select-u">
                 <img src={png2} alt=""/>
-                <div class="layer">
+                <div class="layer" onClick={()=>adLogin("user")}>
                     <h3>User</h3>
                 </div>
             </div>

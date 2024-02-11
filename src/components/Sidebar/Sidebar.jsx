@@ -9,6 +9,16 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Sidebar = () => {
+  const handleLogout = () => {
+    // Perform logout action here (e.g., clear user session or perform any necessary cleanup)
+    const keysToClear = ['user_name', 'adminId',,"admin_name", 'role']; // Add your specific keys here
+
+    // Clear specific items from localStorage
+    keysToClear.forEach((key) => {
+      localStorage.removeItem(key);
+    });
+    navigate('/'); // Navigate to the admin login page
+  };
   const navigate=useNavigate('/maindash');
       const[selected,setSelected] = useState(0);
       const handleSidebarItemClick = (index) => {
@@ -42,7 +52,7 @@ const Sidebar = () => {
                   </div>
                 )
               })}
-              <div className='menuItem'>
+              <div className='menuItem' onClick={handleLogout}>
                 <UilSignOutAlt/>LogOut
               </div>
             
