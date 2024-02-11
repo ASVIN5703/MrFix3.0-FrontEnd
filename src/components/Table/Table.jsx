@@ -43,7 +43,10 @@ const makeStyles=(complaintStatus)=>{
   }
 }
 
-export default function AccessibleTable() {
+export default function AccessibleTable(props) {
+  const {complaints}=props;
+  console.log("complaints  ----->"+complaints)
+  
   return (
   <div className="table-container">
   <TableContainer component={Paper} className="table-paper">
@@ -51,22 +54,25 @@ export default function AccessibleTable() {
       <TableHead>
         <TableRow className='table-header-row'>
           <TableCell className="table-cell">Complaint Id</TableCell>
-          <TableCell className="table-cell" align="left">Date and Time</TableCell>
-          <TableCell className="table-cell" align="left">Complaint Desc</TableCell>
+          <TableCell className="table-cell" align="left">Complainant</TableCell>
+          <TableCell className="table-cell" align="left">Sub</TableCell>
+          <TableCell className="table-cell" align="left">Complaint Issue</TableCell>
           <TableCell className="table-cell" align="left">Complaint Status</TableCell>
+          
         </TableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row) => (
-          <TableRow key={row.name} className="table-row">
+        {complaints.map((row) => (
+          <TableRow key={row.comp_id} className="table-row">
             <TableCell component="th" scope="row" className="table-cell">
-              {row.complaintId}
+              {row.comp_id}
             </TableCell>
-            <TableCell align="left" className="table-cell">{row.date}</TableCell>
-            <TableCell align="left" className="table-cell">{row.complaintDesc}</TableCell>
+            <TableCell align="left" className="table-cell">{row.complainant}</TableCell>
+            <TableCell align="left" className="table-cell">{row.comp_sub}</TableCell>
+            <TableCell align="left" className="table-cell">{row.comp_issue}</TableCell>
             <TableCell align="left" className="table-cell">
-              <span className='status' style={makeStyles(row.complaintStatus)}>
-                {row.complaintStatus}
+              <span className='status' style={makeStyles(row.comp_status)}>
+                {row.comp_status}
               </span>
             </TableCell>
           </TableRow>

@@ -8,6 +8,7 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Button,
   Select,
   MenuItem,
 } from '@mui/material';
@@ -50,20 +51,29 @@ const useStyles = makeStyles({
 
 const Complaints = () => {
   const [complaints, setComplaints] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [entriesPerPage, setEntriesPerPage] = useState(5);
+  const [totalPages, setTotalPages] = useState(1); // New state to keep track of total pages
   const classes = useStyles();
+
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/viewcomp'); // Replace with your API URL
-      setComplaints(response.data);
+      const role=localStorage.getItem("role");
+      const endpoint=(role=="user")?`complaints/search?user_name=${localStorage.getItem("user_name")}&`:`viewcomp`;
+      const response = await axios.get(`http://localhost:8080/${endpoint}?page=${currentPage}&size=${entriesPerPage}`); // Replace with your API URL
+      console.log( response.data);
+      setComplaints(response.data.content);
+      // setTotalPages(Math.ceil(response.headers['X-Total-Count'] / entriesPerPage));
+      setTotalPages(response.data.totalPages);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching data:', error); 
     }
   };
 
   useEffect(() => {
  
     fetchData();
-  }, []);
+  }, [currentPage, entriesPerPage]);
 
   const handleStatusChange = async(event, index) => {
     const updatedComplaints = [...complaints];
@@ -82,8 +92,29 @@ const Complaints = () => {
       console.error('Error updating status:', error);
     }
   };
+  const handleNextPage = () => {
+   // if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+   // }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
+    <>
+     <div>
+        <Button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Previous Page
+        </Button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Next Page
+        </Button>
+      </div>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="complaints table">
         <TableHead>
@@ -123,7 +154,7 @@ const Complaints = () => {
                   <MenuItem value="pending" className={`${classes.pending} ${classes.selectEmpty}`}>
                     Pending
                   </MenuItem>
-                  <MenuItem value="In Progress" className={`${classes.inProgress} ${classes.selectEmpty}`}>
+                  <MenuItem value="InProgress" className={`${classes.inProgress} ${classes.selectEmpty}`}>
                     In Progress
                   </MenuItem>
                 </Select>
@@ -134,6 +165,7 @@ const Complaints = () => {
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 };
 

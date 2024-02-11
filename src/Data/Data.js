@@ -20,7 +20,7 @@ export const SidebarData=[
     {
         icon: UilUserCircle,
         heading: "Profile",
-        path:"/userprofile",
+        path:"/adminprofile",
     },
     
     {
