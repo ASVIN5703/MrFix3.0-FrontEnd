@@ -6,7 +6,8 @@ const Buttons = () => {
   const [showUserForm, setShowUserForm] = useState(false);
   const downloadPdf = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/generateReport', {
+      const endpoint = (localStorage.getItem("role") === "user") ? `?role=${localStorage.getItem("user_name")}`:"";
+      const response = await axios.get('http://localhost:8080/generateReport'+endpoint, {
         responseType: 'blob', // Set the response type to 'blob' for file download
       });
 
