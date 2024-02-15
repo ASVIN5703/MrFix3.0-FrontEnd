@@ -1,0 +1,23 @@
+/* UserTable.css
+
+  
+  
+  .table {
+    width: 90%;
+  }
+  
+  .table-header-row {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .table-cell {
+    padding: 12px 24px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0; /* Change the border color */
+/*}
+  
+  .table-row:hover {
+    background-color: #877ce6; /* Change the hover background color */
+  /*}*/
+   

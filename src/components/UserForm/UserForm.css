@@ -1,5 +1,14 @@
-.action-button {
-  margin-right: 10px; /* Adjust the right margin as needed */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Adjust the z-index to ensure it appears above other elements */
 }
 .Add-button {
   font-size:20px;
@@ -16,39 +25,74 @@
    
 }
 
-  .overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
-  
-  .form-container {
-    color: black !important;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  .password-input {
-    display: flex;
-    align-items: center;
-  }
-  
-  .eye-icon {
-    cursor: pointer;
-    margin-left: 5px; /* Adjust the margin as needed */
-  }
-  .head{
-    text-align: center;
-    font-size: large;
-    font-weight: 200;
-    font-style:oblique;
-  }
-  
+
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 250px; /* Adjust as needed */
+  width: 100%;
+  text-align: center;
+}
+
+.head{
+  text-align: center;
+  font-size: large;
+  font-weight: 200;
+  font-style:oblique;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.action-button {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.eye-icon {
+  cursor: pointer;
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+.action-button:hover {
+  background-color: #45a049;
+}
+.password-input {
+  display: flex;
+  align-items: center;
+}
+
+.cancel-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: #d32f2f;
+}
+
+textarea {
+  width: calc(100% - 20px); /* Adjust the width based on padding */
+  padding: 10px; /* Adjust padding as needed */
+  resize: vertical;
+}

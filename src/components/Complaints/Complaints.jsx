@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Pagination from '@mui/material/Pagination';
 import {
   Table,
   TableBody,
@@ -53,7 +54,8 @@ const Complaints = () => {
   const [complaints, setComplaints] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
-  const [totalPages, setTotalPages] = useState(1); // New state to keep track of total pages
+  const [totalPages, setTotalPages] = useState(1); 
+  const role=localStorage.getItem("role");
   const classes = useStyles();
 
   const fetchData = async () => {
@@ -63,7 +65,7 @@ const Complaints = () => {
       const response = await axios.get(`http://localhost:8080/${endpoint}?page=${currentPage}&size=${entriesPerPage}`); // Replace with your API URL
       console.log( response.data);
       setComplaints(response.data.content);
-      // setTotalPages(Math.ceil(response.headers['X-Total-Count'] / entriesPerPage));
+     
       setTotalPages(response.data.totalPages);
     } catch (error) {
       console.error('Error fetching data:', error); 
@@ -103,10 +105,14 @@ const Complaints = () => {
       setCurrentPage(currentPage - 1);
     }
   };
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
+
 
   return (
     <>
-     <div>
+     {/* <div>
         <Button onClick={handlePrevPage} disabled={currentPage === 1}>
           Previous Page
         </Button>
@@ -114,7 +120,8 @@ const Complaints = () => {
         <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
           Next Page
         </Button>
-      </div>
+      </div> */}
+       <div style={{ marginTop:'20px' ,position: 'relative', width: '85%', height:'90%'    }}>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="complaints table">
         <TableHead>
@@ -134,7 +141,7 @@ const Complaints = () => {
               <TableCell>{complaint.comp_sub}</TableCell>
               <TableCell>{complaint.comp_issue}</TableCell>
               <TableCell>
-                <Select
+                {role=="admin"?(<Select
                   value={complaint.comp_status||"" } // Use default value if comp_status is empty
                   onChange={(event) => handleStatusChange(event, index)}
                   displayEmpty
@@ -157,7 +164,7 @@ const Complaints = () => {
                   <MenuItem value="InProgress" className={`${classes.inProgress} ${classes.selectEmpty}`}>
                     In Progress
                   </MenuItem>
-                </Select>
+                </Select>):complaint.comp_status}
               </TableCell>
               
             </TableRow>
@@ -165,6 +172,38 @@ const Complaints = () => {
         </TableBody>
       </Table>
     </TableContainer>
+    <div
+        style={{
+          position: 'absolute',
+          bottom: 30,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          justifyContent: 'center',
+          width: '40%',
+          height: '38px',
+          backgroundColor: '#f5f5f5', // Optional: add a background color
+          padding: '8px', // Optional: add padding
+        }}
+      >  
+       <Pagination
+        count={totalPages}
+        page={currentPage}
+        onChange={handlePageChange}
+        color="primary"
+        siblingCount={1}
+        style={{ marginTop: '2px', display: 'flex', justifyContent: 'center' }}
+      />
+        {/* <Button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Previous Page
+        </Button>
+        <span style={{ margin: '0 16px' }}>Page {currentPage} of {totalPages}</span>
+        <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Next Page
+        </Button> */}
+      </div>
+
+      </div>
     </>
   );
 };

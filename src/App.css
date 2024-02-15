@@ -17,8 +17,9 @@
 
 #App{
   color: var(--black);
-  background-color: #ffffff;
   background: radial-gradient(circle at 10% 20%, rgb(230, 217, 235) 0%, rgba(234, 246, 249, 0.875) 90.1%);
+  background-color: #ffffff;
+  
   height: 100vh;
   display:flex;
   position: relative;

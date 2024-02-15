@@ -85,10 +85,10 @@ const Login = () => {
               style={{ width: '70%' } }
               value={name}
               onChange={(e) => setadmin_name(e.target.value)}
-            />
+             required/>
         }
         {registering&&<TextField label="Email" fullWidth margin="normal"  style={{ width: '70%' } } value={email}
-          onChange={(e) => setadmin_email(e.target.value)}/>
+          onChange={(e) => setadmin_email(e.target.value)} required/>
       }
         <TextField
           label="Password"
@@ -102,10 +102,11 @@ const Login = () => {
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </Button>
             ),
-          }}
+          }
+       }
           value={pass}
           onChange={(e) => setPassword(e.target.value)}
-        />
+          required />
        {registering&&
             <TextField
               label="Contact"
@@ -113,8 +114,9 @@ const Login = () => {
               margin="normal"
               style={{ width: '70%' } }
               value={contact}
+              required
               onChange={(e) => setContact(e.target.value)}
-            />
+             />
        }
         {!registering&&<Grid container alignItems="center" justify="center" style={{height:'50%'}} spacing={8}>
           <Grid item>
